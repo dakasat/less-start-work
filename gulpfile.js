@@ -162,7 +162,7 @@ gulp.task('js', function () {
 gulp.task('build', gulp.series(                             // последовательно:
   'clean',                                                  // последовательно: очистку папки сборки
   'png:sprite',
-  gulp.parallel('less', 'img', 'js'),
+  gulp.parallel('less', 'img', 'js', 'fonts'),
   // 'pug',
   'html'                                                    // последовательно: сборку разметки
 ));
@@ -210,8 +210,8 @@ gulp.task('serve', gulp.series('build', function() {
   );
 
   gulp.watch(                                               // следим за шрифтами
-    dirs.source + '/fonts/*',
-    gulp.series('fonts', reloader)                          // при изменении оптимизируем, копируем и обновляем в браузере
+    dirs.source + '/fonts/**/*',
+    gulp.series('fonts', reloader)                          // при изменении копируем и обновляем в браузере
   );
 
   gulp.watch(                                               // следим за JS
